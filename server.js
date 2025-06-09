@@ -1,7 +1,9 @@
-// server.js
-import express from "express"
-import axios from "axios"
-import crypto from "crypto"
+import express from "express";
+import axios from "axios";
+import crypto from "crypto";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,7 +12,7 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 app.use(express.json());
 
-// Verify webhook signature
+
 function verifySignature(payload, signature) {
   if (!WEBHOOK_SECRET) return true; 
   
