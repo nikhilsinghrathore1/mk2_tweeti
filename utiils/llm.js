@@ -9,5 +9,7 @@ export async function generateTweet(prompt) {
   const result = await model.generateContent(prompt);
   const response = result.response;
   const text = response.text();
-  return text.slice(0, 280).trim(); 
+  const finalText = text.slice(0, 280).trim(); 
+  return finalText; 
+
 }
