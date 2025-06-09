@@ -2,6 +2,8 @@ import express from "express";
 import axios from "axios";
 import crypto from "crypto";
 import dotenv from "dotenv";
+import { TwitterApi } from "twitter-api-v2";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 dotenv.config();
 
@@ -12,6 +14,66 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 app.use(express.json());
 
+// Initialize Gemini
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+// Initialize Twitter client
+const twitterClient = new TwitterApi({
+  appKey: process.env.XAPIKEY,
+  appSecret: process.env.XAPIKEYSECRET,
+  accessToken: process.env.ACCESSTOKEN,
+  accessSecret: process.env.ACCESSTOKENSECRET,
+});
+
+const rwClient = twitterClient.readWrite;
+
+// Generate tweet using Gemini
+async function generateTweet(prompt) {
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const result = await model.generateContent(prompt);
+  const response = result.response;
+  const text = await response.text();
+  return text.slice(0, 280).trim(); // Keep within tweet length
+}
+
+// Post to Twitter with image
+async function createPost(status) {
+  try {
+    const imageUrl =
+      "https://images.pexels.com/photos/31890680/pexels-photo-31890680/free-photo-of-woman-in-white-dress-surrounded-by-monstera-leaves.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load";
+
+    const response = await axios.get(imageUrl, { responseType: "arraybuffer" });
+    const imageBuffer = Buffer.from(response.data, "binary");
+
+    const mediaId = await rwClient.v1.uploadMedia(imageBuffer, { mimeType: "image/jpeg" });
+
+    const newPost = await rwClient.v2.tweet({
+      text: status,
+      media: {
+        media_ids: [mediaId],
+      },
+    });
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Tweeted: ${status}`,
+        },
+      ],
+    };
+  } catch (error) {
+    console.error("Failed to tweet:", error);
+    return {
+      content: [
+        {
+          type: "text",
+          text: "Failed to post tweet.",
+        },
+      ],
+    };
+  }
+}
 
 function verifySignature(payload, signature) {
   if (!WEBHOOK_SECRET) return true; 
@@ -129,28 +191,60 @@ async function processCommit(data) {
   // 1. Log the commit data
   console.log('📋 Commit Data:', JSON.stringify(data, null, 2));
   
-  // 2. Send to your backend API
-  // try {
-  //   await axios.post('https://your-backend.com/api/commits', data);
-  //   console.log('✅ Sent to backend successfully');
-  // } catch (error) {
-  //   console.error('❌ Failed to send to backend:', error.message);
-  // }
-  
-  // 3. Send notification
-  // await sendNotification(`New commit by ${data.commit.author.name}: ${data.commit.message}`);
+  // 2. Auto-generate and post tweet about the commit (optional)
+  if (process.env.AUTO_TWEET_COMMITS === 'true') {
+    try {
+      const tweetTopic = `New code commit: ${data.commit.message} in ${data.repository}`;
+      const prompt = `Write a short, engaging tweet about: ${tweetTopic} make sure that the tweet is well formatted and there is line break where ever needed always add a line break before tagging any people and always tag @arweaveindia and @ropats16 in every tweet`;
+      const tweet = await generateTweet(prompt);
+      await createPost(tweet);
+      console.log('🐦 Auto-tweeted about commit!');
+    } catch (error) {
+      console.error('❌ Failed to auto-tweet commit:', error.message);
+    }
+  }
   
   console.log('✅ Commit processed');
 }
 
+// Route to trigger tweet generation and posting
+app.post("/tweet", async (req, res) => {
+  try {
+    const { topic } = req.body;
+
+    if (!topic) {
+      res.status(400).json({ error: "Topic is required" });
+      return;
+    }
+
+    const prompt = `Write a short, engaging tweet about: ${topic} make sure that the tweet is well formatted and there is line break where ever needed always add a line break before tagging any people and always tag @arweaveindia and @ropats16 in every tweet`;
+    const tweet = await generateTweet(prompt);
+    const result = await createPost(tweet);
+
+    res.status(200).json({
+      message: "Tweet posted successfully!",
+      tweet,
+      result,
+    });
+  } catch (error) {
+    console.error("Error in /tweet:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+  res.json({ 
+    status: 'OK', 
+    timestamp: new Date().toISOString(),
+    features: ['GitHub Webhooks', 'Twitter Bot']
+  });
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🚀 GitHub webhook server running on port ${PORT}`);
+  console.log(`🚀 Combined GitHub webhook & Twitter server running on port ${PORT}`);
   console.log(`📡 Webhook URL: http://localhost:${PORT}/webhook`);
+  console.log(`🐦 Tweet URL: http://localhost:${PORT}/tweet`);
   console.log(`🏥 Health check: http://localhost:${PORT}/health`);
 });
