@@ -178,6 +178,7 @@ async function getCommitDetails(owner, repo, sha) {
     };
   } catch (error) {
     console.error(`❌ Error fetching commit details: ${error.message}`);
+    console.log("testing docify")
     return null;
   }
 }
