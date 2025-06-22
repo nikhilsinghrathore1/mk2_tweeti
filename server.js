@@ -119,6 +119,7 @@ async function handleNewCommits(payload) {
   console.log(`🌿 Branch: ${ref.replace('refs/heads/', '')}`);
   console.log(`📝 ${commits.length} commit(s)`);
 console.log("help please")
+console.log("help please")
   
   // Process each commit
   for (const commit of commits) {
