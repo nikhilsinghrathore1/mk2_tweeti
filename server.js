@@ -180,6 +180,7 @@ async function getCommitDetails(owner, repo, sha) {
     console.error(`❌ Error fetching commit details: ${error.message}`);
     console.log("testing docify")
     clg("testing full fledge")
+    clg("testing full fledge")
     return null;
   }
 }
