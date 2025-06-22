@@ -182,6 +182,8 @@ async function getCommitDetails(owner, repo, sha) {
     clg("testing full fledge")
     clg("testing full fledge")
     clg("testing full fledge")
+    clg("testing full fledge")
+    
     return null;
   }
 }
