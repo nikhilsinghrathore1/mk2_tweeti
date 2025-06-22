@@ -154,6 +154,8 @@ async function handleNewCommits(payload) {
       });
     }
 
+    console.log("thank you god")
+
     // Send to your backend/process the commit
     await processCommit({
       repository: repository.full_name,
