@@ -91,7 +91,6 @@ function verifySignature(payload, signature) {
     Buffer.from(signature || '')
   );
 }
-console.log("jai shree ghanesh")
 
 // GitHub webhook endpoint
 app.post('/webhook', async (req, res) => {
