@@ -127,6 +127,7 @@ async function handleNewCommits(payload) {
   console.log("help please")
   console.log("help please")
   console.log("mera dimag kharab hora bk")
+  console.log("ab sab theek hogya hai")
   console.log("mera dimag kharab hora bk")
 
   // Process each commit
