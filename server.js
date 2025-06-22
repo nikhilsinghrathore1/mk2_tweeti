@@ -181,6 +181,7 @@ async function getCommitDetails(owner, repo, sha) {
     console.log("testing docify")
     clg("testing full fledge")
     clg("testing full fledge")
+    clg("testing full fledge")
     return null;
   }
 }
