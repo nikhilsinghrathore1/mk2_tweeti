@@ -36,6 +36,7 @@ async function generateTweet(prompt) {
   return text.slice(0, 280).trim(); // Keep within tweet length
 }
 
+console.log("added thsi")
 // Post to Twitter with image
 async function createPost(status) {
   try {
