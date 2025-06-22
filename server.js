@@ -38,6 +38,7 @@ async function generateTweet(prompt) {
 
 console.log("added thsi")
 console.log("added thsi")
+console.log("added this")
 // Post to Twitter with image
 async function createPost(status) {
   try {
