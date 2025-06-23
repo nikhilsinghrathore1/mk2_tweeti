@@ -124,7 +124,12 @@ async function handleNewCommits(payload) {
   console.log(`👤 Pushed by: ${pusher.name}`);
   console.log(`🌿 Branch: ${ref.replace('refs/heads/', '')}`);
   console.log(`📝 ${commits.length} commit(s)`);
-  
+  console.log("help please")
+  console.log("help please")
+  console.log("mera dimag kharab hora bk")
+  console.log("ab sab theek hogya hai")
+  console.log("mera dimag kharab hora bk")
+  console.log("mera mann bhene laga")
 
   // Process each commit
   for (const commit of commits) {
