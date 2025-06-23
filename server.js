@@ -155,9 +155,9 @@ async function handleNewCommits(payload) {
         console.log(`  📄 ${file.status}: ${file.filename}`);
       });
     }
+    console.log("testing kyuki kush to gadbad hai daya ")
 
     
-    console.log("badsha")
 
     // Send to your backend/process the commit
     await processCommit({
