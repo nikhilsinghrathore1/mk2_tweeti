@@ -160,7 +160,8 @@ async function handleNewCommits(payload) {
     console.log("testing the hashtag functionality")
     console.log("testing ")
     console.log("one more testing after increasing the word limit ")
-    console.log("now testing the tag feature ")
+    console.log("now testing the tag feature")
+    console.log("bajigar")
 
     // Send to your backend/process the commit
     await processCommit({
