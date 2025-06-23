@@ -28,8 +28,8 @@
 
 * 🚀 **AI-Powered Tweet Generation:**  Leverages Google Gemini to create engaging tweets based on prompts.
 * 🤖 **GitHub Webhook Integration:** Automatically generates tweets upon new commits to your repository.
-* 🐦 **Image Support:**  Tweets can include images fetched from a specified URL.
-* 📝 **Customizable Prompts:**  Fine-tune tweet generation with detailed prompts.
+* 🐦 **Image Support:** Tweets can include images fetched from a specified URL.
+* 📝 **Customizable Prompts:** Fine-tune tweet generation with detailed prompts.
 * ⏱️ **Tweet Scheduling (Future Feature):** Plan your tweets for optimal engagement.
 * 📊 **Analytics Dashboard (Future Feature):** Track tweet performance and engagement metrics.
 * ⚙️ **Easy Configuration:** Simple setup with environment variables.
@@ -74,8 +74,7 @@ AUTO_TWEET_COMMITS=true # Set to 'true' to automatically tweet commits, 'false' 
 
 ## 📖 Detailed Usage 📚
 
-This application utilizes GitHub webhooks to trigger tweet generation upon new commits.  It also provides a `/tweet` endpoint for manual tweet creation.
-
+This application uses GitHub webhooks to trigger tweet generation on new commits. It also provides a `/tweet` endpoint for manual tweet creation.
 
 **Example 1: Manual Tweet Generation (using the `/tweet` endpoint):**
 
@@ -93,9 +92,9 @@ axios.post('http://localhost:3000/tweet', {
 });
 ```
 
-**Example 2:  Webhook Handling (server.js):**
+**Example 2: Webhook Handling (server.js):**
 
-The `/webhook` endpoint in `server.js` handles incoming GitHub webhook events.  It verifies the signature, processes push events, and triggers tweet generation for each commit if `AUTO_TWEET_COMMITS` is set to `true`.
+The `/webhook` endpoint in `server.js` handles incoming GitHub webhook events. It verifies the signature, processes push events, and triggers tweet generation for each commit if `AUTO_TWEET_COMMITS` is set to `true`.
 
 
 ---
@@ -167,7 +166,7 @@ mk2_tweeti/
 
 ## 📜 License & Acknowledgments 🙏
 
-This project is licensed under the [ISC License](https://opensource.org/licenses/ISC).  Thanks to the creators of Express.js, Google Gemini, and the Twitter API v2 for their amazing tools!
+This project is licensed under the [ISC License](https://opensource.org/licenses/ISC). Thanks to the creators of Express.js, Google Gemini, and the Twitter API v2 for their amazing tools!
 
 
 ---
@@ -200,11 +199,11 @@ This project is licensed under the [ISC License](https://opensource.org/licenses
 
 <details><summary><b>Frequently Asked Questions (FAQ)</b></summary>
 
-  - **Q: What API keys do I need?**  A: You need API keys for Google Gemini and the Twitter API v2.  A GitHub Personal Access Token is also required for fetching detailed commit information.
+- **Q: What API keys do I need?** A: You need API keys for Google Gemini and the Twitter API v2. A GitHub Personal Access Token is also required for fetching detailed commit information.
 
-  - **Q: How do I set up the GitHub webhook?** A:  You'll need to configure a webhook in your GitHub repository settings, pointing to the `/webhook` endpoint of this application.
+- **Q: How do I set up the GitHub webhook?** A: You'll need to configure a webhook in your GitHub repository settings, pointing to the `/webhook` endpoint of this application.
 
-  - **Q: What happens if tweet generation fails?** A: The application includes error handling and logging.  It will attempt to gracefully handle failures and log errors for debugging purposes.
+- **Q: What happens if tweet generation fails?** A: The application includes error handling and logging. It will attempt to gracefully handle failures and log errors for debugging purposes.
 
 </details>
 ```
