@@ -16,11 +16,20 @@
 
 **Tagline:** Effortlessly generate and tweet engaging content using the power of Gemini and GitHub webhooks! ✨
 
+<br>
+
 [![npm](https://img.shields.io/npm/v/mk2_tweeti?style=for-the-badge)](https://www.npmjs.com/)
 [![License](https://img.shields.io/github/license/nikhilsinghrathore1/mk2_tweeti?style=for-the-badge)](https://github.com/nikhilsinghrathore1/mk2_tweeti/blob/main/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/nikhilsinghrathore1/mk2_tweeti?style=for-the-badge)](https://github.com/nikhilsinghrathore1/mk2_tweeti/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/nikhilsinghrathore1/mk2_tweeti?style=for-the-badge)](https://github.com/nikhilsinghrathore1/mk2_tweeti/issues)
+[![Node.js](https://img.shields.io/badge/node.js-v18+-brightgreen.svg?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/express.js-4.18+-brightgreen.svg?style=for-the-badge&logo=express)](https://expressjs.com/)  
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-AI-blue.svg?style=for-the-badge)](https://developers.generativeai.google/) 
+[![Twitter API v2](https://img.shields.io/badge/Twitter%20API-v2-1DA1F2.svg?style=for-the-badge&logo=twitter)](https://developer.twitter.com/en/docs/twitter-api) 
+[![Axios](https://img.shields.io/badge/axios-0.27+-blue.svg?style=for-the-badge&logo=axios)](https://axios-http.com/)
 
+
+<br>
 
 ---
 
@@ -35,6 +44,8 @@
 * ⚙️ **Easy Configuration:** Simple setup with environment variables.
 
 
+<br>
+
 ---
 
 ## 🛠️ Tech Stack 📦
@@ -46,7 +57,10 @@
 | Google Gemini    | [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-AI-blue.svg?style=for-the-badge)](https://developers.generativeai.google/) |
 | Twitter API v2   | [![Twitter API v2](https://img.shields.io/badge/Twitter%20API-v2-1DA1F2.svg?style=for-the-badge&logo=twitter)](https://developer.twitter.com/en/docs/twitter-api) |
 | Axios            | [![Axios](https://img.shields.io/badge/axios-0.27+-blue.svg?style=for-the-badge&logo=axios)](https://axios-http.com/) |
+| Pnpm            | [![pnpm](https://img.shields.io/badge/pnpm-v8+-brightgreen.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/) |
 
+
+<br>
 
 ---
 
@@ -70,6 +84,8 @@ GITHUB_TOKEN=your_github_token
 AUTO_TWEET_COMMITS=true # Set to 'true' to automatically tweet commits, 'false' otherwise
 ```
 
+<br>
+
 ---
 
 ## 📖 Detailed Usage 📚
@@ -92,10 +108,28 @@ axios.post('http://localhost:3000/tweet', {
 });
 ```
 
-**Example 2: Webhook Handling (server.js):**
+**Example 2:  Webhook Handling (Illustrative Snippet from `server.js`)**
 
-The `/webhook` endpoint in `server.js` handles incoming GitHub webhook events. It verifies the signature, processes push events, and triggers tweet generation for each commit if `AUTO_TWEET_COMMITS` is set to `true`.
+```javascript
+// ... (other code) ...
 
+app.post('/webhook', async (req, res) => {
+  // ... (signature verification) ...
+
+  if (event === 'push') {
+    await handleNewCommits(req.body);
+  }
+
+  res.status(200).send('OK');
+});
+
+// ... (rest of the code) ...
+```
+
+The `/webhook` endpoint in `server.js` handles incoming GitHub webhook events.  It verifies the signature, processes push events, and triggers tweet generation for each commit if `AUTO_TWEET_COMMITS` is set to `true`.  See the full `server.js` file for complete implementation details.
+
+
+<br>
 
 ---
 
@@ -112,6 +146,8 @@ mk2_tweeti/
 └── ...                // Other files
 ```
 
+<br>
+
 ---
 
 ## 🎯 API Documentation 📄
@@ -122,6 +158,8 @@ mk2_tweeti/
 | `/tweet`        | POST    | Manually generates and posts a tweet.                | `{ topic: 'your topic' }` | `{ message: 'success', tweet: 'tweet text' }` |
 | `/health`       | GET     | Health check endpoint.                               | None                     | `{ status: 'OK', timestamp: ... }`         |
 
+
+<br>
 
 ---
 
@@ -140,16 +178,20 @@ mk2_tweeti/
 | `AUTO_TWEET_COMMITS`       | Set to 'true' to automatically tweet new commits, 'false' otherwise. | `string` | `false`  |
 
 
+<br>
+
 ---
 
 ## 📸 Screenshots/Demo 🖼️
 
-**(Insert Screenshots Here - Replace with actual image links)**
+**(Replace placeholders with actual image links)**
 
-[Screenshot 1](placeholder.jpg)
-[Screenshot 2](placeholder.jpg)
-[Screenshot 3](placeholder.jpg)
+[Screenshot 1](placeholder1.jpg)
+[Screenshot 2](placeholder2.jpg)
+[Screenshot 3](placeholder3.jpg)
 
+
+<br>
 
 ---
 
@@ -162,6 +204,8 @@ mk2_tweeti/
 5. Create a pull request to merge your changes into the main branch.
 
 
+<br>
+
 ---
 
 ## 📜 License & Acknowledgments 🙏
@@ -169,12 +213,16 @@ mk2_tweeti/
 This project is licensed under the [ISC License](https://opensource.org/licenses/ISC). Thanks to the creators of Express.js, Google Gemini, and the Twitter API v2 for their amazing tools!
 
 
+<br>
+
 ---
 
 ## 👥 Contributors ✨
 
-**(Insert Contributor Avatars and Links Here)**
+**(Add contributor information here)**
 
+
+<br>
 
 ---
 
@@ -183,6 +231,8 @@ This project is licensed under the [ISC License](https://opensource.org/licenses
 [![Twitter](https://img.shields.io/badge/Twitter-@nikhilsinghrathore1-1DA1F2.svg?style=for-the-badge&logo=twitter)](https://twitter.com/nikhilsinghrathore1)
 [![Email](https://img.shields.io/badge/Gmail-nikhilsinghrathore1@gmail.com-red.svg?style=for-the-badge&logo=gmail)](mailto:nikhilsinghrathore1@gmail.com)
 
+
+<br>
 
 ---
 
@@ -194,6 +244,8 @@ This project is licensed under the [ISC License](https://opensource.org/licenses
 - [ ] Improve error handling and logging.
 - [ ] Enhance documentation and examples.
 
+
+<br>
 
 ---
 
