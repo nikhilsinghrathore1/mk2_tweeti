@@ -27,6 +27,7 @@
 [![Google Gemini](https://img.shields.io/badge/Google%20Gemini-AI-blue.svg?style=for-the-badge)](https://developers.generativeai.google/) 
 [![Twitter API v2](https://img.shields.io/badge/Twitter%20API-v2-1DA1F2.svg?style=for-the-badge&logo=twitter)](https://developer.twitter.com/en/docs/twitter-api) 
 [![Axios](https://img.shields.io/badge/axios-0.27+-blue.svg?style=for-the-badge&logo=axios)](https://axios-http.com/)
+[![pnpm](https://img.shields.io/badge/pnpm-v8+-brightgreen.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
 
 
 <br>
