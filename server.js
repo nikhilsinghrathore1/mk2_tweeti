@@ -157,6 +157,7 @@ async function handleNewCommits(payload) {
     }
 
     console.log("thank you god")
+    console.log("testing the hashtag functionality")
 
     // Send to your backend/process the commit
     await processCommit({
