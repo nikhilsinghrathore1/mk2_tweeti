@@ -124,6 +124,7 @@ async function handleNewCommits(payload) {
   console.log(`👤 Pushed by: ${pusher.name}`);
   console.log(`🌿 Branch: ${ref.replace('refs/heads/', '')}`);
   console.log(`📝 ${commits.length} commit(s)`);
+  console.log(`logging details`);
   
 
   // Process each commit
