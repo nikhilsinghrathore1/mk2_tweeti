@@ -126,6 +126,7 @@ async function handleNewCommits(payload) {
   console.log(`📝 ${commits.length} commit(s)`);
   console.log(`logging details`);
   console.log(`logging details on tweeti`);
+  console.log(`new prompt for the tweeti`);
   
 
   // Process each commit
