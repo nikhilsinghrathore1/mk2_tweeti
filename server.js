@@ -125,6 +125,7 @@ async function handleNewCommits(payload) {
   console.log(`🌿 Branch: ${ref.replace('refs/heads/', '')}`);
   console.log(`📝 ${commits.length} commit(s)`);
   console.log(`logging details`);
+  console.log(`logging details on tweeti`);
   
 
   // Process each commit
