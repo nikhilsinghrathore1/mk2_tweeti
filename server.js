@@ -126,6 +126,7 @@ async function handleNewCommits(payload) {
   console.log(`📝 ${commits.length} commit(s)`);
   console.log(`logging details`);
   console.log(`adding new data`);
+  console.log(`adding data`);
 
   
 
