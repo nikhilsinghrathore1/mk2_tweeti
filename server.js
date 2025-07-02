@@ -154,6 +154,7 @@ async function handleNewCommits(payload) {
         console.log(`  📄 ${file.status}: ${file.filename}`);
       });
     }
+    console.log("first")
 
 console.log("trying one more time")
 console.log("testing final time")
