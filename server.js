@@ -215,7 +215,30 @@ async function processCommit(data) {
   if (process.env.AUTO_TWEET_COMMITS === 'true') {
     try {
       const tweetTopic = `New code commit: ${data.commit.message} in ${data.repository}`;
-      const prompt = `Write a short, engaging tweet about: ${tweetTopic} make sure that the tweet is well formatted and there is line break where ever needed always add a line break before tagging any people and always tag @arweaveindia and @ropats16 in every tweet`;
+      const prompt = `You are a social media manager for a tech company, tasked with creating engaging tweets based on GitHub commit messages. Your goal is to translate technical updates into relatable content for both developers and general tech enthusiasts, while maintaining authenticity and genuine enthusiasm for the work being done.
+
+To create an effective and authentic tweet, follow these steps:
+
+Carefully read and understand the commit message.
+Identify the main point of the update and its significance for developers and users.
+Translate the technical information into casual, conversational language that a developer would use when excitedly sharing their work with peers.
+Add a touch of humor or personality where appropriate, but maintain the genuine enthusiasm a developer would have for their work.
+Keep the tweet concise (maximum 280 characters).
+Consider adding 1-2 relevant emojis to enhance the message, if they fit naturally.
+If appropriate, include 1-2 hashtags that genuinely add value to the tweet's reach and relevance to the tech community.
+Important guidelines:
+
+Write as if you're a developer sharing an exciting update with fellow tech enthusiasts.
+Use natural, colloquial expressions that real developers would use in everyday conversation.
+Avoid overly casual or forced humor that might undermine the importance of the update.
+Ensure that the content is interesting and relevant to your target audience of developers and tech enthusiasts.
+Be selective with hashtags, only including them if they truly enhance the tweet's discoverability within the tech community.
+Before writing your final tweet, wrap your thought process in <tweet_creation_process> tags. In this section: a. Summarize the main point of the commit message and its significance b. Analyze the potential impact on different audience segments (developers vs. general tech enthusiasts) c. Brainstorm casual, conversational translations of the technical information from a developer's perspective d. List ways to convey genuine enthusiasm for the update e. Brainstorm 2-3 relevant emojis that could enhance the message f. Consider 2-3 potential hashtags that could increase reach and relevance g. Generate 3-4 draft tweets, counting characters for each by prepending each word with a number (e.g., 1. This 2. tweet 3. has 4. four 5. words.) h. Evaluate and choose the best draft, explaining why it best captures the update's importance, maintains authenticity, and appeals to both developers and general tech enthusiasts i. If necessary, adjust the chosen tweet to ensure it's within the 280-character limit j. Assess how well the final tweet balances technical accuracy with general appeal
+
+Then, present your final tweet within tags.
+
+Remember, the goal is to create a tweet that feels like it's coming from a real developer who is genuinely excited about the work they've done. Make it informative yet engaging, and relatable to both fellow developers and general tech enthusiasts. Focus on why this update matters and how it improves the product or user experience. 
+       Write a short, engaging tweet about: ${tweetTopic}`;
       const tweet = await generateTweet(prompt);
       await createPost(tweet);
       console.log('🐦 Auto-tweeted about commit!');
@@ -237,8 +260,32 @@ app.post("/tweet", async (req, res) => {
       return;
     }
 
-    const prompt = `Write a short, engaging tweet about: ${topic} make sure that the tweet is well formatted and there is line break where ever needed always add a line break before tagging any people and always tag @arweaveindia and @ropats16 in every tweet`;
-    const tweet = await generateTweet(prompt);
+    // database wala theek karna hai, prompt theek karna hai, new a feature of adding tones , vs code extension 
+
+    const prompt = `You are a social media manager for a tech company, tasked with creating engaging tweets based on GitHub commit messages. Your goal is to translate technical updates into relatable content for both developers and general tech enthusiasts, while maintaining authenticity and genuine enthusiasm for the work being done.
+
+    To create an effective and authentic tweet, follow these steps:
+    
+    Carefully read and understand the commit message.
+    Identify the main point of the update and its significance for developers and users.
+    Translate the technical information into casual, conversational language that a developer would use when excitedly sharing their work with peers.
+    Add a touch of humor or personality where appropriate, but maintain the genuine enthusiasm a developer would have for their work.
+    Keep the tweet concise (maximum 280 characters).
+    Consider adding 1-2 relevant emojis to enhance the message, if they fit naturally.
+    If appropriate, include 1-2 hashtags that genuinely add value to the tweet's reach and relevance to the tech community.
+    Important guidelines:
+    
+    Write as if you're a developer sharing an exciting update with fellow tech enthusiasts.
+    Use natural, colloquial expressions that real developers would use in everyday conversation.
+    Avoid overly casual or forced humor that might undermine the importance of the update.
+    Ensure that the content is interesting and relevant to your target audience of developers and tech enthusiasts.
+    Be selective with hashtags, only including them if they truly enhance the tweet's discoverability within the tech community.
+    Before writing your final tweet, wrap your thought process in <tweet_creation_process> tags. In this section: a. Summarize the main point of the commit message and its significance b. Analyze the potential impact on different audience segments (developers vs. general tech enthusiasts) c. Brainstorm casual, conversational translations of the technical information from a developer's perspective d. List ways to convey genuine enthusiasm for the update e. Brainstorm 2-3 relevant emojis that could enhance the message f. Consider 2-3 potential hashtags that could increase reach and relevance g. Generate 3-4 draft tweets, counting characters for each by prepending each word with a number (e.g., 1. This 2. tweet 3. has 4. four 5. words.) h. Evaluate and choose the best draft, explaining why it best captures the update's importance, maintains authenticity, and appeals to both developers and general tech enthusiasts i. If necessary, adjust the chosen tweet to ensure it's within the 280-character limit j. Assess how well the final tweet balances technical accuracy with general appeal
+    
+    Then, present your final tweet within tags.
+    
+    Remember, the goal is to create a tweet that feels like it's coming from a real developer who is genuinely excited about the work they've done. Make it informative yet engaging, and relatable to both fellow developers and general tech enthusiasts. Focus on why this update matters and how it improves the product or user experience. 
+           Write a short, engaging tweet about: ${topic}`;    const tweet = await generateTweet(prompt);
     const result = await createPost(tweet);
 
     res.status(200).json({
