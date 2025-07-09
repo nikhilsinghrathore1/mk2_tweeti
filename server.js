@@ -259,6 +259,7 @@ app.post("/tweet", async (req, res) => {
       res.status(400).json({ error: "Topic is required" });
       return;
     }
+    console.log("testing again"); 
 
     // database wala theek karna hai, prompt theek karna hai, new a feature of adding tones , vs code extension 
 
