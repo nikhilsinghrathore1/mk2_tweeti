@@ -75,9 +75,9 @@ async function createPost(status) {
         },
       ],
     };
-    console.log("testing ")
   }
 }
+console.log("jai shree ghanesh");
 
 function verifySignature(payload, signature) {
   if (!WEBHOOK_SECRET) return true;
