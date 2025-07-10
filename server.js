@@ -57,6 +57,8 @@ async function createPost(status) {
       },
     });
 
+    console.log("chal ja")
+
     return {
       content: [
         {
@@ -65,6 +67,7 @@ async function createPost(status) {
         },
       ],
     };
+
   } catch (error) {
     console.error("Failed to tweet:", error);
     return {
