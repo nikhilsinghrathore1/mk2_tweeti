@@ -75,6 +75,7 @@ async function createPost(status) {
         },
       ],
     };
+    console.log("testing ")
   }
 }
 
