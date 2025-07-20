@@ -50,6 +50,8 @@ async function createPost(status) {
 
     const mediaId = await rwClient.v1.uploadMedia(imageBuffer, { mimeType: "image/jpeg" });
 
+    clg("testing")
+
     const newPost = await rwClient.v2.tweet({
       text: status,
       media: {
@@ -57,8 +59,7 @@ async function createPost(status) {
       },
     });
 
-    console.log("chal ja")
-
+    
     return {
       content: [
         {
